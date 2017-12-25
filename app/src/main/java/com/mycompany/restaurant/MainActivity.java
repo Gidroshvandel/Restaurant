@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         news.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                NewsActivity.start(MainActivity.this);
 
             }
         });
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         photoReports.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                PhotoReportsActivity.start(MainActivity.this);
 
             }
         });
@@ -52,14 +54,14 @@ public class MainActivity extends AppCompatActivity {
         delivery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                DeliveryActivity.start(MainActivity.this);
             }
         });
         RelativeLayout about = findViewById(R.id.about);
         about.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                AboutActivity.start(MainActivity.this);
             }
         });
 
