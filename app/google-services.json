@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "532166821637",
+    "firebase_url": "https://restaurant-e3401.firebaseio.com",
+    "project_id": "restaurant-e3401",
+    "storage_bucket": "restaurant-e3401.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:532166821637:android:07fa78191ab5cde8",
+        "android_client_info": {
+          "package_name": "com.mycompany.restaurant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "532166821637-c2js7sf5va57hubt3ru2ohgjf4pbnsfq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkFQrkLjSrDulKzmRTAjMO2xJhI8_3FYc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

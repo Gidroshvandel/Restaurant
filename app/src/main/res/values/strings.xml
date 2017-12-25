@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Ресторан Марка</string>
+    <string name="main_menu_title_menu">Меню</string>
+    <string name="main_menu_title_news">Новости \n Акции</string>
+    <string name="main_menu_title_about">О ресторане</string>
+    <string name="main_menu_title_photo_reports">Фотоотчеты</string>
+    <string name="main_menu_title_delivery">Условия \n доставки</string>
+    <string name="category_garnish">Гарниры</string>
+    <string name="category_meat">Вторые блюда</string>
+    <string name="category_dessert">Десерты</string>
+    <string name="category_drinkables">Напитки</string>
+    <string name="category_salad">Салаты</string>
+    <string name="category_sauce">Соусы</string>
+    <string name="category_snack">Горячие закуски</string>
+    <string name="category_soup">Супы</string>
+</resources>

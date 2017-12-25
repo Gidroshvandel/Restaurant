@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/about"/>
+
+    <TextView
+        style="@style/textMenuStyle"
+        android:layout_marginTop="12dp"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:text="Ресторан авторской кухни"/>
+
+    <TextView
+        style="@style/textMenuStyle"
+        android:text="Марка"
+        android:textSize="60sp"
+        android:textStyle="bold|italic"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:padding="16dp"
+        style="@style/textMenuStyle"
+        android:text="Попробуй удовольствие на вкус"
+        android:textSize="18sp"
+        android:gravity="end"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

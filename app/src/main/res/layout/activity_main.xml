@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:theme="@style/AppToolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/menu"
+                android:layout_width="match_parent"
+                android:layout_height="120dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/menu">
+
+                </ImageView>
+
+                <TextView
+                    style="@style/textMenuStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:paddingLeft="16sp"
+                    android:paddingRight="16sp"
+                    android:text="@string/main_menu_title_menu" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/news"
+                android:layout_width="match_parent"
+                android:layout_height="120dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/news">
+
+                </ImageView>
+
+                <TextView
+                    style="@style/textMenuStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:paddingLeft="16sp"
+                    android:paddingRight="16sp"
+                    android:text="@string/main_menu_title_news" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/photo_reports"
+                android:layout_width="match_parent"
+                android:layout_height="120dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/photo_reports" />
+
+                <TextView
+                    style="@style/textMenuStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:paddingLeft="16sp"
+                    android:paddingRight="16sp"
+                    android:text="@string/main_menu_title_photo_reports" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/delivery"
+                android:layout_width="match_parent"
+                android:layout_height="120dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/delivery">
+
+                </ImageView>
+
+                <TextView
+                    style="@style/textMenuStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:paddingLeft="16sp"
+                    android:paddingRight="16sp"
+                    android:text="@string/main_menu_title_delivery" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/about"
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/about">
+
+                </ImageView>
+
+                <TextView
+                    style="@style/textMenuStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:paddingLeft="16sp"
+                    android:paddingRight="16sp"
+                    android:text="@string/main_menu_title_about" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
