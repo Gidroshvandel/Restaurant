@@ -14,17 +14,18 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mycompany.restaurant.model.MenuModel;
 import com.mycompany.restaurant.model.SelectDishModel;
 
 import java.util.ArrayList;
 
 public class SelectDishActivity extends AppCompatActivity implements SelectDishAdapter.ItemActionListener {
 
-    private static final String SELECT_DISH_MODEL = "SELECT_DISH_MODEL";
+    private static final String MENU_MODEL = "MENU_MODEL";
 
-    public static void start(Context parentContext, ArrayList<SelectDishModel> selectDishModel) {
+    public static void start(Context parentContext, MenuModel menuModel) {
         Intent intent = new Intent(parentContext, SelectDishActivity.class);
-        intent.putExtra(SELECT_DISH_MODEL, selectDishModel);
+        intent.putExtra(MENU_MODEL, menuModel);
         parentContext.startActivity(intent);
     }
 
@@ -36,21 +37,20 @@ public class SelectDishActivity extends AppCompatActivity implements SelectDishA
         setSupportActionBar(toolbar);
         setTitle(getString(R.string.app_name));
 
+        MenuModel menuModel = (MenuModel) getIntent().getSerializableExtra(MENU_MODEL);
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        ArrayList<SelectDishModel> selectDishModel = (ArrayList<SelectDishModel>) getIntent().getSerializableExtra(SELECT_DISH_MODEL);
-
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         TextView textView = findViewById(R.id.text_error);
 
-        if(selectDishModel != null){
+        if(menuModel.getSelectDishModel() != null){
             recyclerView.setVisibility(View.VISIBLE);
             textView.setVisibility(View.GONE);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            SelectDishAdapter adapter = new SelectDishAdapter(selectDishModel, true, false, this);
+            SelectDishAdapter adapter = new SelectDishAdapter(menuModel.getSelectDishModel(), true, false, this);
             recyclerView.setAdapter(adapter);
         }else {
             recyclerView.setVisibility(View.GONE);
@@ -79,7 +79,6 @@ public class SelectDishActivity extends AppCompatActivity implements SelectDishA
                 return true;
         }
     }
-
 
     private void showCart(){
         CartActivity.start(this);

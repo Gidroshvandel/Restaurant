@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,8 +15,9 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.mycompany.restaurant.model.MenuModel;
 import com.mycompany.restaurant.model.SelectDishModel;
-import com.mycompany.restaurant.service.MenuService;
+import com.mycompany.restaurant.service.DataBaseService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +27,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CategoryActivity extends AppCompatActivity {
+
+    private RecyclerView recyclerView;
 
     public static void start(Context parentContext) {
         Intent intent = new Intent(parentContext, CategoryActivity.class);
@@ -44,94 +49,30 @@ public class CategoryActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        RelativeLayout category_garnish = findViewById(R.id.category_garnish);
-        category_garnish.setOnClickListener(new View.OnClickListener() {
+        ApiService.getInstance().create(DataBaseService.class).getMenuModel().enqueue(new Callback<ArrayList<MenuModel>>() {
             @Override
-            public void onClick(View v) {
-                ApiService.getInstance().create(MenuService.class).getDishModel().enqueue(new Callback<ArrayList<SelectDishModel>>() {
-                    @Override
-                    public void onResponse(Call<ArrayList<SelectDishModel>> call, Response<ArrayList<SelectDishModel>> response) {
-                        ArrayList<SelectDishModel> selectDishModels = response.body();
-                        SelectDishActivity.start(
-                                CategoryActivity.this,
-                                selectDishModels);
-                    }
+            public void onResponse(Call<ArrayList<MenuModel>> call, Response<ArrayList<MenuModel>> response) {
+                initAdapter(response.body());
+            }
 
-                    @Override
-                    public void onFailure(Call<ArrayList<SelectDishModel>> call, Throwable t) {
-                        Toast toast = Toast.makeText(getApplicationContext(),
-                                "ERROR", Toast.LENGTH_SHORT);
-                        toast.show();
-                    }
-                });
-            }
-        });
-        RelativeLayout category_soup = findViewById(R.id.category_soup);
-        category_soup.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                ArrayList<SelectDishModel> selectDishModels = new ArrayList<>();
-                selectDishModels.add(new SelectDishModel(R.drawable.soup, "суп1", 100, 180));
-                selectDishModels.add(new SelectDishModel(R.drawable.soup2, "суп2", 100, 180));
-                selectDishModels.add(new SelectDishModel(R.drawable.soup3, "суп3", 100, 180));
-                selectDishModels.add(new SelectDishModel(R.drawable.soup4, "суп14", 100, 180));
-                SelectDishActivity.start(
-                        CategoryActivity.this,
-                        selectDishModels);
-            }
-        });
-        RelativeLayout category_meat = findViewById(R.id.category_meat);
-        category_meat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SelectDishActivity.start(
-                        CategoryActivity.this,
-                        null);
-            }
-        });
-        RelativeLayout category_dessert = findViewById(R.id.category_dessert);
-        category_dessert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SelectDishActivity.start(
-                        CategoryActivity.this,
-                        null);
-            }
-        });
-        RelativeLayout category_drinkables = findViewById(R.id.category_drinkables);
-        category_drinkables.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SelectDishActivity.start(
-                        CategoryActivity.this,
-                        null);
-            }
-        });
-        RelativeLayout category_salad = findViewById(R.id.category_salad);
-        category_salad.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            public void onFailure(Call<ArrayList<MenuModel>> call, Throwable t) {
 
             }
         });
-        RelativeLayout category_sauce = findViewById(R.id.category_sauce);
-        category_sauce.setOnClickListener(new View.OnClickListener() {
+    }
+
+    private void initAdapter(ArrayList<MenuModel> menuModels){
+        recyclerView = findViewById(R.id.recycler_view);
+
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        MenuAdapter adapter = new MenuAdapter(menuModels, new MenuAdapter.ItemActionListener() {
             @Override
-            public void onClick(View v) {
-                SelectDishActivity.start(
-                        CategoryActivity.this,
-                        null);
+            public void onItemClick(int position, MenuModel menuModel) {
+                SelectDishActivity.start(CategoryActivity.this, menuModel);
             }
         });
-        RelativeLayout category_snack = findViewById(R.id.category_snack);
-        category_snack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SelectDishActivity.start(
-                        CategoryActivity.this,
-                        null);
-            }
-        });
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -158,7 +99,5 @@ public class CategoryActivity extends AppCompatActivity {
     private void showCart(){
         CartActivity.start(this);
     }
-
-
 
 }
