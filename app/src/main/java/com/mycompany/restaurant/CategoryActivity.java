@@ -39,6 +39,11 @@ public class CategoryActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         setTitle(getString(R.string.app_name));
 
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
         RelativeLayout category_garnish = findViewById(R.id.category_garnish);
         category_garnish.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,6 +147,9 @@ public class CategoryActivity extends AppCompatActivity {
             case R.id.menu_cart:
                 showCart();
                 return true;
+            case android.R.id.home:
+                finish();
+                return super.onOptionsItemSelected(item);
             default:
                 return true;
         }
@@ -150,5 +158,7 @@ public class CategoryActivity extends AppCompatActivity {
     private void showCart(){
         CartActivity.start(this);
     }
+
+
 
 }

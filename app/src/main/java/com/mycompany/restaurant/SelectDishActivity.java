@@ -36,6 +36,11 @@ public class SelectDishActivity extends AppCompatActivity implements SelectDishA
         setSupportActionBar(toolbar);
         setTitle(getString(R.string.app_name));
 
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
         ArrayList<SelectDishModel> selectDishModel = (ArrayList<SelectDishModel>) getIntent().getSerializableExtra(SELECT_DISH_MODEL);
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
@@ -67,10 +72,14 @@ public class SelectDishActivity extends AppCompatActivity implements SelectDishA
             case R.id.menu_cart:
                 showCart();
                 return true;
+            case android.R.id.home:
+                finish();
+                return super.onOptionsItemSelected(item);
             default:
                 return true;
         }
     }
+
 
     private void showCart(){
         CartActivity.start(this);
