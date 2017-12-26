@@ -17,8 +17,6 @@ import android.widget.Toast;
 import com.mycompany.restaurant.model.MenuModel;
 import com.mycompany.restaurant.model.SelectDishModel;
 
-import java.util.ArrayList;
-
 public class SelectDishActivity extends AppCompatActivity implements SelectDishAdapter.ItemActionListener {
 
     private static final String MENU_MODEL = "MENU_MODEL";
@@ -35,9 +33,11 @@ public class SelectDishActivity extends AppCompatActivity implements SelectDishA
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        setTitle(getString(R.string.app_name));
 
         MenuModel menuModel = (MenuModel) getIntent().getSerializableExtra(MENU_MODEL);
+
+        setTitle(menuModel.getName());
+
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);

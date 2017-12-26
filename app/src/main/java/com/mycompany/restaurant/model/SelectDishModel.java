@@ -18,18 +18,11 @@ public class SelectDishModel implements Serializable {
 
     private int weight;
 
-    public SelectDishModel(int imageId, String name, int price, int weight) {
-        this.imageId = imageId;
-        this.name = name;
-        this.price = price;
-        this.weight = weight;
-    }
-
-    public int getImage() {
+    public int getImageId() {
         return imageId;
     }
 
-    public void setImage(int imageId) {
+    public void setImageId(int imageId) {
         this.imageId = imageId;
     }
 

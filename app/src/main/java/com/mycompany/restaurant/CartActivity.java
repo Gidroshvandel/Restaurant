@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +22,7 @@ public class CartActivity extends AppCompatActivity implements SelectDishAdapter
 
     private RecyclerView recyclerView;
     private TextView textView;
-    private Button btn_send;
+    private Button btnSend;
 
     public static void start(Context parentContext) {
         Intent intent = new Intent(parentContext, CartActivity.class);
@@ -35,7 +37,7 @@ public class CartActivity extends AppCompatActivity implements SelectDishAdapter
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        setTitle(getString(R.string.app_name));
+        setTitle("Корзина покупок");
 
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -44,32 +46,29 @@ public class CartActivity extends AppCompatActivity implements SelectDishAdapter
 
         recyclerView = findViewById(R.id.recycler_view);
         textView = findViewById(R.id.text_error);
-        btn_send = findViewById(R.id.btn_send);
+        btnSend = findViewById(R.id.btn_send);
 
         if(selectDishModel != null && selectDishModel.size() > 0){
             recyclerView.setVisibility(View.VISIBLE);
             textView.setVisibility(View.GONE);
-            btn_send.setVisibility(View.VISIBLE);
+            btnSend.setVisibility(View.VISIBLE);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             SelectDishAdapter adapter = new SelectDishAdapter(selectDishModel, false, true, this);
             recyclerView.setAdapter(adapter);
         }else {
             recyclerView.setVisibility(View.GONE);
-            btn_send.setVisibility(View.GONE);
+            btnSend.setVisibility(View.GONE);
             textView.setVisibility(View.VISIBLE);
         }
 
-        String text = "ОФормить\n" + sumAllPrice() + " Р Общая сумма заказа";
-        btn_send.setText(text);
-
-    }
-
-    private int sumAllPrice(){
-        int price = 0;
-        for (SelectDishModel dishModel : Cart.selectDishModels) {
-            price = price + dishModel.getPrice();
-        }
-        return price;
+        String text = "Перейти к оформлению\n" + "Общая сумма заказа: " + Cart.sumAllPrice() + " p";
+        btnSend.setText(text);
+        btnSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ConfirmationActivity.start(CartActivity.this);
+            }
+        });
     }
 
     @Override
@@ -77,28 +76,44 @@ public class CartActivity extends AppCompatActivity implements SelectDishAdapter
         int pos = Cart.findItemPosition(selectDishModel);
         if(pos != -1)
             Cart.selectDishModels.remove(pos);
-        String text = "ОФормить\n" + sumAllPrice() + " Р Общая сумма заказа";
-        btn_send.setText(text);
+        String text = "Перейти к оформлению\n\n" + "Общая сумма заказа:\n" + Cart.sumAllPrice() + " p";
+        btnSend.setText(text);
         if(Cart.selectDishModels != null && Cart.selectDishModels.size() > 0){
             recyclerView.setVisibility(View.VISIBLE);
             textView.setVisibility(View.GONE);
-            btn_send.setVisibility(View.VISIBLE);
+            btnSend.setVisibility(View.VISIBLE);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             SelectDishAdapter adapter = new SelectDishAdapter(Cart.selectDishModels, false, true, this);
             recyclerView.setAdapter(adapter);
         }else {
             recyclerView.setVisibility(View.GONE);
-            btn_send.setVisibility(View.GONE);
+            btnSend.setVisibility(View.GONE);
             textView.setVisibility(View.VISIBLE);
         }
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-        }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.status_menu, menu);
+        return true;
+    }
 
-        return super.onOptionsItemSelected(item);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_status:
+                showStatusActivity();
+                return true;
+            case android.R.id.home:
+                finish();
+                return super.onOptionsItemSelected(item);
+            default:
+                return true;
+        }
+    }
+
+    private void showStatusActivity(){
+        StatusActivity.start(this);
     }
 }

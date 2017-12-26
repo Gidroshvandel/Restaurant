@@ -1,11 +1,9 @@
 package com.mycompany.restaurant;
 
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -62,7 +60,7 @@ public class SelectDishAdapter extends RecyclerView.Adapter<SelectDishAdapter.Se
 
         void update() {
             final SelectDishModel selectDishModel = selectDishModelList.get(getAdapterPosition());
-//            image.setImageDrawable(ContextCompat.getDrawable(itemView.getContext(), selectDishModel.getImage()));
+            image.setImageDrawable(ImageSelector.getSubCategoryImage(itemView.getContext(), selectDishModel.getImageId()));
             text_view.setText(selectDishModel.getName());
             String text = selectDishModel.getPrice() + "Р" + " / " + selectDishModel.getWeight() + " г";
             price.setText(text);

@@ -3,7 +3,6 @@ package com.mycompany.restaurant;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,16 +10,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.mycompany.restaurant.model.MenuModel;
-import com.mycompany.restaurant.model.SelectDishModel;
+import com.mycompany.restaurant.service.ApiService;
 import com.mycompany.restaurant.service.DataBaseService;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,7 +38,7 @@ public class CategoryActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        setTitle(getString(R.string.app_name));
+        setTitle("Меню");
 
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -57,7 +53,10 @@ public class CategoryActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ArrayList<MenuModel>> call, Throwable t) {
-
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        "Ошибка", Toast.LENGTH_SHORT);
+                toast.show();
+                finish();
             }
         });
     }
@@ -66,7 +65,7 @@ public class CategoryActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
 
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        MenuAdapter adapter = new MenuAdapter(menuModels, new MenuAdapter.ItemActionListener() {
+        CategoryAdapter adapter = new CategoryAdapter(menuModels, new CategoryAdapter.ItemActionListener() {
             @Override
             public void onItemClick(int position, MenuModel menuModel) {
                 SelectDishActivity.start(CategoryActivity.this, menuModel);

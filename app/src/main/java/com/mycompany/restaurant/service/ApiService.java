@@ -1,4 +1,4 @@
-package com.mycompany.restaurant;
+package com.mycompany.restaurant.service;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

@@ -1,6 +1,5 @@
 package com.mycompany.restaurant;
 
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,17 +11,13 @@ import com.mycompany.restaurant.model.MenuModel;
 
 import java.util.List;
 
-/**
- * Created by Lantiets on 25.12.2017.
- */
-
-public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder> {
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MenuViewHolder> {
 
     private List<MenuModel> menuModels;
 
     private ItemActionListener listener;
 
-    public MenuAdapter(List<MenuModel> menuModels, ItemActionListener listener) {
+    public CategoryAdapter(List<MenuModel> menuModels, ItemActionListener listener) {
         this.menuModels = menuModels;
         this.listener = listener;
     }
@@ -56,7 +51,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
 
         void update() {
             final MenuModel menuModel = menuModels.get(getAdapterPosition());
-            image.setImageDrawable(ContextCompat.getDrawable(itemView.getContext(), R.drawable.category_garnish));
+            image.setImageDrawable(ImageSelector.getCategoryImage(itemView.getContext(), menuModel.getImageId()));
             text.setText(menuModel.getName());
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
