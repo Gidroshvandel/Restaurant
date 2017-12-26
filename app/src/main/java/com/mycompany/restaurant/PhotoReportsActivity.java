@@ -1,16 +1,18 @@
 package com.mycompany.restaurant;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 /**
  * Created by Gidro on 25.12.2017.
  */
 
-public class PhotoReportsActivity extends Activity {
+public class PhotoReportsActivity extends AppCompatActivity {
 
     public static void start(Context parentContext) {
         Intent intent = new Intent(parentContext, PhotoReportsActivity.class);
@@ -21,5 +23,22 @@ public class PhotoReportsActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.photo_reports_activity);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        setTitle(getString(R.string.main_menu_title_photo_reports));
+
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
