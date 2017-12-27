@@ -35,7 +35,7 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".ConfirmationActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".StatusActivity"
+        <activity android:name=".HistoryActivity"
             android:screenOrientation="portrait"/>
     </application>
 

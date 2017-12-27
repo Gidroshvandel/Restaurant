@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/news">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -14,15 +15,17 @@
         app:theme="@style/AppToolbar" />
 
 
-        <ScrollView
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <RelativeLayout
+                android:layout_marginTop="12dp"
                 android:id="@+id/news_one"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
@@ -32,19 +35,20 @@
                     android:id="@+id/birthday"
                     android:layout_width="160dp"
                     android:layout_height="match_parent"
-                    android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
                     android:scaleType="centerCrop"
                     android:src="@drawable/image_birthday">
 
                 </ImageView>
 
                 <TextView
-                    style="@style/textNewsStyle"
                     android:id="@+id/birthday_cap"
+                    style="@style/textNewsStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toLeftOf="@id/birthday"
+                    android:layout_toStartOf="@id/birthday"
                     android:paddingLeft="16sp"
                     android:paddingRight="16sp"
                     android:text="@string/birthday" />
@@ -53,14 +57,18 @@
                     android:id="@+id/birthday_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/birthday_cap"
                     android:layout_toLeftOf="@id/birthday"
+                    android:layout_toStartOf="@id/birthday"
                     android:paddingLeft="20sp"
                     android:paddingRight="16sp"
-                    android:paddingTop="40sp"
+                    android:paddingTop="4dp"
                     android:text="@string/birthday_text" />
 
             </RelativeLayout>
+
             <RelativeLayout
+                android:layout_marginTop="12dp"
                 android:id="@+id/news_two"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
@@ -78,8 +86,8 @@
                 </ImageView>
 
                 <TextView
-                    style="@style/textNewsStyle"
                     android:id="@+id/textView"
+                    style="@style/textNewsStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/image"
@@ -91,14 +99,18 @@
                     android:id="@+id/textViewq"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/textView"
                     android:layout_toRightOf="@id/image"
                     android:paddingLeft="20sp"
                     android:paddingRight="16sp"
-                    android:paddingTop="40sp"
+                    android:paddingTop="4dp"
+
                     android:text="@string/two_one_text" />
 
             </RelativeLayout>
+
             <RelativeLayout
+                android:layout_marginTop="12dp"
                 android:id="@+id/news_tree"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
@@ -108,16 +120,16 @@
                     android:id="@+id/image3"
                     android:layout_width="160dp"
                     android:layout_height="match_parent"
-                    android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
                     android:scaleType="centerCrop"
                     android:src="@drawable/snow">
 
                 </ImageView>
 
                 <TextView
-                    style="@style/textNewsStyle"
                     android:id="@+id/text3"
+                    style="@style/textNewsStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toLeftOf="@id/image3"
@@ -130,13 +142,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toLeftOf="@id/image3"
+                    android:layout_below="@id/text3"
                     android:paddingLeft="20sp"
                     android:paddingRight="16sp"
-                    android:paddingTop="40sp"
+                    android:paddingTop="4dp"
                     android:text="@string/snow_text" />
 
             </RelativeLayout>
+
             <RelativeLayout
+                android:layout_marginTop="12dp"
                 android:id="@+id/news_four"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
@@ -154,8 +169,8 @@
                 </ImageView>
 
                 <TextView
-                    style="@style/textNewsStyle"
                     android:id="@+id/textView4"
+                    style="@style/textNewsStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/image4"
@@ -168,18 +183,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/image4"
+                    android:layout_below="@id/textView4"
                     android:paddingLeft="20sp"
                     android:paddingRight="16sp"
-                    android:paddingTop="40sp"
+                    android:layout_marginTop="4dp"
                     android:text="@string/two_one_text" />
 
             </RelativeLayout>
-            </LinearLayout>
-        </ScrollView>
-
-
-
-
+        </LinearLayout>
+    </ScrollView>
 
 
 </LinearLayout>

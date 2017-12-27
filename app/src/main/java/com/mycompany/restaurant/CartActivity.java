@@ -114,6 +114,6 @@ public class CartActivity extends AppCompatActivity implements SelectDishAdapter
     }
 
     private void showStatusActivity(){
-        StatusActivity.start(this);
+        HistoryActivity.start(this);
     }
 }

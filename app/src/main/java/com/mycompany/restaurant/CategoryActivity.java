@@ -1,5 +1,6 @@
 package com.mycompany.restaurant;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -45,14 +46,21 @@ public class CategoryActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
+        final ProgressDialog progress = new ProgressDialog(this);
+        progress.setTitle("Loading");
+        progress.setMessage("Wait while loading...");
+        progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+        progress.show();
         ApiService.getInstance().create(DataBaseService.class).getMenuModel().enqueue(new Callback<ArrayList<MenuModel>>() {
             @Override
             public void onResponse(Call<ArrayList<MenuModel>> call, Response<ArrayList<MenuModel>> response) {
+                progress.hide();
                 initAdapter(response.body());
             }
 
             @Override
             public void onFailure(Call<ArrayList<MenuModel>> call, Throwable t) {
+                progress.hide();
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "Ошибка", Toast.LENGTH_SHORT);
                 toast.show();

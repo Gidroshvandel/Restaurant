@@ -46,9 +46,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/image4"
-                android:gravity="left"
-                android:paddingLeft="20sp"
-                android:paddingRight="16sp"
+                android:padding="16dp"
+                android:textColor="@android:color/black"
                 android:text="@string/about" />
 
         </RelativeLayout>

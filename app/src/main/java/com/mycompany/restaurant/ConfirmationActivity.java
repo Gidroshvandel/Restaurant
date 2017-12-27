@@ -1,5 +1,6 @@
 package com.mycompany.restaurant;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.mycompany.restaurant.model.UserModel;
 import com.mycompany.restaurant.service.ApiService;
 import com.mycompany.restaurant.service.DataBaseService;
+import com.mycompany.restaurant.utils.Prefs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +34,7 @@ public class ConfirmationActivity extends AppCompatActivity {
     private EditText apartment;
     private TextView amount;
     private Button btnSend;
+    private ProgressDialog progress;
 
     public static void start(Context parentContext) {
         Intent intent = new Intent(parentContext, ConfirmationActivity.class);
@@ -51,6 +54,11 @@ public class ConfirmationActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
+
+        progress = new ProgressDialog(ConfirmationActivity.this);
+        progress.setTitle("Loading");
+        progress.setMessage("Wait while loading...");
+        progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
 
         phone = findViewById(R.id.phone);
         address = findViewById(R.id.address);
@@ -83,6 +91,7 @@ public class ConfirmationActivity extends AppCompatActivity {
     }
 
     private void getInformation(final String phone, final ArrayList<UserModel> userModels){
+        progress.show();
         ApiService.getInstance().create(DataBaseService.class).getUserModel(phone).enqueue(new Callback<ArrayList<UserModel>>() {
             @Override
             public void onResponse(Call<ArrayList<UserModel>> call, Response<ArrayList<UserModel>> response) {
@@ -94,6 +103,7 @@ public class ConfirmationActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ArrayList<UserModel>> call, Throwable t) {
+                progress.hide();
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "Не удалось отправить заказ", Toast.LENGTH_SHORT);
                 toast.show();
@@ -101,18 +111,22 @@ public class ConfirmationActivity extends AppCompatActivity {
         });
     }
 
-    private void sendInformation(String phone, ArrayList<UserModel> user) {
+    private void sendInformation(final String phone, ArrayList<UserModel> user) {
         ApiService.getInstance().create(DataBaseService.class).sendUserModel(phone, user).enqueue(
                 new Callback<ArrayList<UserModel>>() {
                     @Override
                     public void onResponse(Call<ArrayList<UserModel>> call, Response<ArrayList<UserModel>> response) {
+                        progress.hide();
+                        Prefs.with(ConfirmationActivity.this).save(Prefs.CURRENT_PHONE, phone);
                         Toast toast = Toast.makeText(getApplicationContext(),
                                 "Ваша заявка принята в обработку!", Toast.LENGTH_SHORT);
                         toast.show();
+                        Cart.selectDishModels.clear();
                     }
 
                     @Override
                     public void onFailure(Call<ArrayList<UserModel>> call, Throwable t) {
+                        progress.hide();
                         Toast toast = Toast.makeText(getApplicationContext(),
                                 "Не удалось отправить заказ", Toast.LENGTH_SHORT);
                         toast.show();

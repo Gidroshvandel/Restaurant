@@ -4,7 +4,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mycompany.restaurant.model.SelectDishModel;
@@ -12,11 +11,11 @@ import com.mycompany.restaurant.model.UserModel;
 
 import java.util.ArrayList;
 
-public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusViewHolder> {
+public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.StatusViewHolder> {
 
     private ArrayList<UserModel> selectDishModelList;
 
-    public StatusAdapter(ArrayList<UserModel> selectDishModelList) {
+    public HistoryAdapter(ArrayList<UserModel> selectDishModelList) {
         this.selectDishModelList = selectDishModelList;
     }
 
