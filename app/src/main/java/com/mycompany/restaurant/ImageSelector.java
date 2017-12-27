@@ -41,6 +41,8 @@ public class ImageSelector {
                 return ContextCompat.getDrawable(context, R.drawable.soup4);
             case 5:
                 return ContextCompat.getDrawable(context, R.drawable.salad);
+            case 6:
+                return ContextCompat.getDrawable(context, R.drawable.coca_cala);
             default:
                 return null;
         }

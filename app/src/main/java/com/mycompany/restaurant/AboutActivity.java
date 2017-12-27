@@ -10,10 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-/**
- * Created by Gidro on 25.12.2017.
- */
-
 public class AboutActivity extends AppCompatActivity {
 
     public static void start(Context parentContext) {
