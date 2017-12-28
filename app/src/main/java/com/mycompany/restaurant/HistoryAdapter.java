@@ -38,13 +38,11 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.StatusVi
     class StatusViewHolder extends RecyclerView.ViewHolder {
 
         private TextView address;
-        private TextView phone;
         private TextView amount;
 
         StatusViewHolder(View itemView) {
             super(itemView);
             address = itemView.findViewById(R.id.address);
-            phone = itemView.findViewById(R.id.price);
             amount = itemView.findViewById(R.id.amount);
         }
 
