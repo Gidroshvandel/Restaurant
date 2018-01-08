@@ -6,6 +6,7 @@ import android.support.v4.content.ContextCompat;
 
 public class ImageSelector {
 
+    //выбор картинок для категорий меню
     public static Drawable getCategoryImage(Context context, int id) {
         switch (id) {
             case 1:
@@ -29,6 +30,7 @@ public class ImageSelector {
         }
     }
 
+    // Выбор картинок для продуктов
     public static Drawable getSubCategoryImage(Context context, int id) {
         switch (id) {
             case 1:

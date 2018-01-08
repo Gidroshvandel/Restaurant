@@ -1,12 +1,6 @@
 package com.mycompany.restaurant.model;
 
-import android.graphics.drawable.Drawable;
-
 import java.io.Serializable;
-
-/**
- * Created by Lantiets on 24.12.2017.
- */
 
 public class SelectDishModel implements Serializable {
 

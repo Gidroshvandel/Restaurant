@@ -12,6 +12,7 @@ public class LaunchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.launch_activity);
 
+        //Задержка чтобы пользователи посмотрели на наш красивый сплэш скрин
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

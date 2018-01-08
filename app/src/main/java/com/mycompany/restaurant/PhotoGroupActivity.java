@@ -8,19 +8,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
-public class PhotoReportsActivity extends AppCompatActivity {
+public class PhotoGroupActivity extends AppCompatActivity {
 
-    public static void start(Context parentContext) {
-        Intent intent = new Intent(parentContext, PhotoReportsActivity.class);
+    public static final String MODE = "mode";
+
+    public static void start(Context parentContext, int mode) {
+        Intent intent = new Intent(parentContext, PhotoGroupActivity.class);
+        intent.putExtra(MODE, mode);
         parentContext.startActivity(intent);
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.photo_reports_activity);
+        setContentView(R.layout.photo_group_activity);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle(getString(R.string.main_menu_title_photo_reports));
@@ -30,23 +35,16 @@ public class PhotoReportsActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        RelativeLayout dr = findViewById(R.id.dr);
-
-        dr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PhotoGroupActivity.start(PhotoReportsActivity.this, 1);
-            }
-        });
-
-        RelativeLayout two = findViewById(R.id.two);
-
-        two.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PhotoGroupActivity.start(PhotoReportsActivity.this, -1);
-            }
-        });
+        ScrollView scrollView = findViewById(R.id.scrollView);
+        TextView text = findViewById(R.id.photo);
+        int mode = getIntent().getIntExtra(MODE, -1);
+        if(mode == -1){
+            scrollView.setVisibility(View.GONE);
+            text.setVisibility(View.VISIBLE);
+        }else if(mode == 1){
+            scrollView.setVisibility(View.VISIBLE);
+            text.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -57,4 +55,5 @@ public class PhotoReportsActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

@@ -8,6 +8,7 @@ public class Cart {
 
     public static ArrayList<SelectDishModel> selectDishModels = new ArrayList<>();
 
+    //поиск позиции по элементу
     public static int findItemPosition(SelectDishModel selectDishModel){
         for (int i = 0; i < selectDishModels.size(); i++) {
             SelectDishModel dishModel = selectDishModels.get(i);
@@ -21,6 +22,7 @@ public class Cart {
         return -1;
     }
 
+    //вычисление суммы заказа
     public static int sumAllPrice(){
         int price = 0;
         for (SelectDishModel dishModel : Cart.selectDishModels) {

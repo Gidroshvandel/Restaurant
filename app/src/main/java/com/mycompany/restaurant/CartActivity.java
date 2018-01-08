@@ -48,6 +48,7 @@ public class CartActivity extends AppCompatActivity implements SelectDishAdapter
         textView = findViewById(R.id.text_error);
         btnSend = findViewById(R.id.btn_send);
 
+        //проверка на наличие товара в корзине
         if(selectDishModel != null && selectDishModel.size() > 0){
             recyclerView.setVisibility(View.VISIBLE);
             textView.setVisibility(View.GONE);

@@ -11,6 +11,7 @@ import com.mycompany.restaurant.model.UserModel;
 
 import java.util.ArrayList;
 
+//адаптер истории заказов
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.StatusViewHolder> {
 
     private ArrayList<UserModel> selectDishModelList;
@@ -19,6 +20,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.StatusVi
         this.selectDishModelList = selectDishModelList;
     }
 
+    //создание холдера
     @Override
     public StatusViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.status_item, parent, false);
@@ -46,6 +48,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.StatusVi
             amount = itemView.findViewById(R.id.amount);
         }
 
+        //получение данных из бд при обновлении страницы
         void update() {
             final UserModel selectDishModel = selectDishModelList.get(getAdapterPosition());
             String text = "ул. " + selectDishModel.getStreet() + " д. " + selectDishModel.getBuilding() + " кв. " + selectDishModel.getApartment();
@@ -54,6 +57,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.StatusVi
             amount.setText(text1);
         }
 
+        //расчет суммы заказа
         private int sumAllPrice(ArrayList<SelectDishModel> selectDishModels){
             int price = 0;
             for (SelectDishModel dishModel : selectDishModels) {

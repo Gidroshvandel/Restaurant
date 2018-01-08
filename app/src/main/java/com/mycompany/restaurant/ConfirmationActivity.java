@@ -26,8 +26,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+//класс для реализации оформления заказа
 public class ConfirmationActivity extends AppCompatActivity {
 
+    //параметры для оформления заказа
     private EditText phone;
     private EditText address;
     private EditText building;
@@ -68,13 +70,16 @@ public class ConfirmationActivity extends AppCompatActivity {
         String text = Cart.sumAllPrice() + " р";
         amount.setText(text);
         btnSend = findViewById(R.id.btn_send);
+
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //проверяем заполнены ли все поля
                 if (!TextUtils.isEmpty(phone.getText()) &&
                         !TextUtils.isEmpty(address.getText()) &&
                         !TextUtils.isEmpty(building.getText()) &&
                         !TextUtils.isEmpty(apartment.getText())) {
+                    //если да то формируем данные и отправляем их на сервер
                     ArrayList<UserModel> userModels = new ArrayList<>();
                     userModels.add(new UserModel(address.getText().toString(),
                             apartment.getText().toString(),
@@ -82,6 +87,7 @@ public class ConfirmationActivity extends AppCompatActivity {
                             Cart.selectDishModels));
                     getInformation(phone.getText().toString(),userModels);
                 } else {
+                    //если нет говорим об этом
                     Toast toast = Toast.makeText(getApplicationContext(),
                             "Заполните все поля!", Toast.LENGTH_SHORT);
                     toast.show();
@@ -90,6 +96,7 @@ public class ConfirmationActivity extends AppCompatActivity {
         });
     }
 
+    //получение информации от сервера
     private void getInformation(final String phone, final ArrayList<UserModel> userModels){
         progress.show();
         ApiService.getInstance().create(DataBaseService.class).getUserModel(phone).enqueue(new Callback<ArrayList<UserModel>>() {
@@ -98,6 +105,7 @@ public class ConfirmationActivity extends AppCompatActivity {
                 if(response.body() != null){
                     userModels.addAll(response.body());
                 }
+                //дописываем наши данные в список и отправляем его
                 sendInformation(phone, userModels);
             }
 
@@ -111,6 +119,7 @@ public class ConfirmationActivity extends AppCompatActivity {
         });
     }
 
+    //Отправка информации на сервер
     private void sendInformation(final String phone, ArrayList<UserModel> user) {
         ApiService.getInstance().create(DataBaseService.class).sendUserModel(phone, user).enqueue(
                 new Callback<ArrayList<UserModel>>() {

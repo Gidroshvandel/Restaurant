@@ -46,6 +46,7 @@ public class SelectDishActivity extends AppCompatActivity implements SelectDishA
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         TextView textView = findViewById(R.id.text_error);
 
+        //Проверка на наличие списка в ответе от сервера
         if(menuModel.getSelectDishModel() != null){
             recyclerView.setVisibility(View.VISIBLE);
             textView.setVisibility(View.GONE);

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -22,23 +21,53 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
+            <RelativeLayout
+                android:id="@+id/dr"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/foto_1"/>
+                android:layout_height="125dp">
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:scaleType="centerCrop"
-                android:layout_height="250dp"
-                android:src="@drawable/foto_2"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/image_birthday">
 
-            <ImageView
+                </ImageView>
+
+                <TextView
+                    style="@style/textMenuStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:paddingLeft="16sp"
+                    android:paddingRight="16sp"
+                    android:text="День рождения заведения" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/two"
                 android:layout_width="match_parent"
-                android:scaleType="centerCrop"
-                android:layout_height="250dp"
-                android:src="@drawable/foto_3"/>
+                android:layout_height="125dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/foto_1">
+
+                </ImageView>
+
+                <TextView
+                    style="@style/textMenuStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:paddingLeft="16sp"
+                    android:paddingRight="16sp"
+                    android:text="Тематические вечера" />
+
+            </RelativeLayout>
 
         </LinearLayout>
 

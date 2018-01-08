@@ -51,6 +51,7 @@ public class CategoryActivity extends AppCompatActivity {
         progress.setMessage("Wait while loading...");
         progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
         progress.show();
+        //получение списка меню от сервера
         ApiService.getInstance().create(DataBaseService.class).getMenuModel().enqueue(new Callback<ArrayList<MenuModel>>() {
             @Override
             public void onResponse(Call<ArrayList<MenuModel>> call, Response<ArrayList<MenuModel>> response) {

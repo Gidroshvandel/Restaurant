@@ -11,6 +11,7 @@ import com.mycompany.restaurant.model.MenuModel;
 
 import java.util.List;
 
+//класс адаптера для категорий
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MenuViewHolder> {
 
     private List<MenuModel> menuModels;
@@ -22,6 +23,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MenuVi
         this.listener = listener;
     }
 
+    //создание холдера
     @Override
     public MenuViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_adapter_item, parent, false);
@@ -49,6 +51,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MenuVi
             text = itemView.findViewById(R.id.text);
         }
 
+        //загрузка данных из бд при обновлении страницы
         void update() {
             final MenuModel menuModel = menuModels.get(getAdapterPosition());
             image.setImageDrawable(ImageSelector.getCategoryImage(itemView.getContext(), menuModel.getImageId()));

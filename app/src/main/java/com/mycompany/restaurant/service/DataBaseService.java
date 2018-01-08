@@ -14,6 +14,8 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface DataBaseService {
+
+    //Запросы к базе данных
     @GET("/dataBase/menuModel.json")
     Call<ArrayList<MenuModel>> getMenuModel();
 

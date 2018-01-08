@@ -3,10 +3,6 @@ package com.mycompany.restaurant.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- * Created by Lantiets on 25.12.2017.
- */
-
 public class MenuModel implements Serializable {
 
     private int imageId;

@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+//главный активити
 public class MainActivity extends AppCompatActivity {
 
     public static void start(Context parentContext) {

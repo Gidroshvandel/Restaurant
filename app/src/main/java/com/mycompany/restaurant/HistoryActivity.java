@@ -59,6 +59,7 @@ public class HistoryActivity extends AppCompatActivity {
         progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
         progress.show();
 
+        //Отправка запроса
         ApiService.getInstance().create(DataBaseService.class).getUserModel(phone).enqueue(new Callback<ArrayList<UserModel>>() {
             @Override
             public void onResponse(Call<ArrayList<UserModel>> call, Response<ArrayList<UserModel>> response) {
